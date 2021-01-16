@@ -47,9 +47,7 @@ function PresetPreviewMaker({
       <div id="preview" className="flex flex-wrap">
         <div className="flex-grow w-6/12 relative">
           <span
-            className={`absolute top-${top || 10} right-${
-              right || 10
-            } z-10 text-white font-bold text-4xl py-1 px-4 rounded-2xl`}
+            className={`absolute top-10 right-10 z-10 text-white font-bold text-4xl py-1 px-4 rounded-2xl`}
             style={{ backgroundColor: "rgba(0,0,0, 0.6)" }}
           >
             Before
@@ -58,7 +56,7 @@ function PresetPreviewMaker({
         </div>
         <div className="flex-grow w-6/12 relative">
           <span
-            className={`absolute top-${top || 10} right-${
+            className={`absolute top-10 right-${
               right || 10
             } z-10 text-white font-bold text-4xl py-1 px-4 rounded-2xl`}
             style={{ backgroundColor: "rgba(0,0,0, 0.6)" }}
@@ -66,9 +64,7 @@ function PresetPreviewMaker({
             After
           </span>
           <span
-            className={`absolute bottom-${top || 10} right-${
-              right || 10
-            } z-10 text-white font-bold text-4xl py-1 px-4 rounded-2xl`}
+            className={`absolute bottom-10 right-10 z-10 text-white font-bold text-4xl py-1 px-4 rounded-2xl`}
             style={{ backgroundColor: "rgba(0,0,0, 0.6)" }}
           >
             {presetName}
@@ -107,8 +103,6 @@ function Field({ name, children }) {
   );
 }
 
-const PaddingOptions = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24];
-
 function PresetPreview() {
   const [name, setName] = useState("");
   const [before, setBefore] = useState("");
@@ -144,31 +138,12 @@ function PresetPreview() {
         <Field name="After">
           <input type="file" onChange={setAfterImage} />
         </Field>
-        <Field name="Top">
-          <select value={top} onChange={(event) => setTop(event.target.value)}>
-            {PaddingOptions.map((p) => (
-              <option key={p}>{p}</option>
-            ))}
-          </select>
-        </Field>
-        <Field name="Right">
-          <select
-            value={right}
-            onChange={(event) => setRight(event.target.value)}
-          >
-            {PaddingOptions.map((p) => (
-              <option key={p}>{p}</option>
-            ))}
-          </select>
-        </Field>
       </div>
       {name && before && after && (
         <PresetPreviewMaker
           beforeImage={before}
           afterImage={after}
           presetName={name}
-          top={top}
-          right={right}
         />
       )}
     </div>
